@@ -20,6 +20,8 @@ public class FieldOperations {
             while (line != null)
             {
                 line = reader.readLine();
+                if (line == null)
+                    break;
                 String[] nums = line.split(" ");
                 for (int i = 0; i < y; i++)
                 {
