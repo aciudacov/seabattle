@@ -68,6 +68,14 @@ public class FieldOperations {
                 increasedField[i][j] = sourceField[i][j];
             }
         }
+
+        if (addRow)
+            for (int j = 0; j < y; j++)
+                increasedField[x_new-1][j] = 0;
+        else
+            for (int j = 0; j < y; j++)
+                increasedField[j][y_new-1] = 0;
+
         return increasedField;
     }
 }
