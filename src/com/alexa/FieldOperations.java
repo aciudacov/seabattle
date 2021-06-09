@@ -1,13 +1,16 @@
 package com.alexa;
 
+import jdk.jshell.spi.ExecutionControl;
+
 import java.io.BufferedReader;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
 public class FieldOperations {
 
     /**
-     *
+     * Creates sea battle field stored in two-dimensional array from file. Array size set in file.
      * @param filePath File path from where to create sea battle field.
      * @return Returns two-dimensional integer array filled according to file content with set dimensions.
      */
@@ -77,5 +80,80 @@ public class FieldOperations {
                 increasedField[j][y_new-1] = 0;
 
         return increasedField;
+    }
+
+    /**
+     *
+     * @param sourceField Source sea battle field which will be modified.
+     * @param x Vertical coordinate of the ship (specify lowest point).
+     * @param y Horizontal coordinate of the ship (specify rightmost point).
+     * @return Returns modified sea battle field without the ship whose coords were specified.
+     */
+    public int[][] RemoveShip(int[][] sourceField, int x, int y)
+    {
+        return null;
+    }
+
+    /**
+     * Counts amount of ships on the sea battle field.
+     * @param sourceField Source sea battle field where to count ships.
+     * @return Returns amount of ships on the field according to rules.
+     */
+    public int GetShipCount(int[][] sourceField)
+    {
+        for (int i = 0; i < sourceField.length; i++) {
+            for (int j = 0; j < sourceField[0].length; j++) {
+                //do something
+            }
+        }
+        return 0;
+    }
+
+    /**
+     *
+     * @param sourceField Source sea battle field where to identify ship.
+     * @param x Vertical coordinate of the ship (specify highest point).
+     * @param y Horizontal coordinate of the ship (specify leftmost point).
+     * @return Returns ship type number (from 1 to 7).
+     */
+    public int GetShipType(int[][] sourceField, int x, int y)
+    {
+        return 0;
+    }
+
+    /**
+     * Lists coordinates of ships from longest to shortest.
+     * @param sourceField Source sea battle field where to calculate ships length.
+     */
+    public void ShowCoordinatesDesc(int[][] sourceField)
+    {
+        //do something
+    }
+
+    /**
+     * Writes all horizontal ship coordinates to Orizont.txt file
+     * @param sourceField Source sea battle field where to look for horizontal ships.
+     */
+    public void WriteHorizontal(int[][] sourceField)
+    {
+        //do something
+    }
+
+    /**
+     *
+     * @param sourceField Source sea battle field where to look for required rectangular area.
+     */
+    public void GetRectangle(int [][] sourceField)
+    {
+        //do something
+    }
+
+    /**
+     *
+     * @param sourceField Source sea battle field where attacked ships are.
+     */
+    public void AttackShips(int[][] sourceField)
+    {
+        //do something
     }
 }
