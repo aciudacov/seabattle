@@ -1,7 +1,11 @@
 package com.alexa;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 import static java.lang.Integer.parseInt;
@@ -269,12 +273,35 @@ public class FieldOperations {
     }
 
     /**
-     * Writes all horizontal ship coordinates to Orizont.txt file
+     * Writes all horizontal ship coordinates to Orizont.txt file.
      * @param sourceField Source sea battle field where to look for horizontal ships.
+     * @return Returns true if write to file was successful.
      */
-    public void WriteHorizontal(int[][] sourceField)
+    public boolean WriteHorizontal(int[][] sourceField)
     {
-        //do something
+        try
+        {
+            var reqShips = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+            var file = new File("Orizont.txt");
+            file.createNewFile();
+            var writer = new BufferedWriter(new FileWriter("Orizont.txt"));
+            var shipList = GetCoordinatesDesc(sourceField);
+            for (var sh: shipList)
+            {
+                if (reqShips.contains(sh.ShipType))
+                {
+                    writer.write("Horizontal ship type is " + sh.ShipType + ". Top left coordinate is " + (sh.x + 1) + ":" + (sh.y + 1) + "\n");
+                }
+            }
+            writer.close();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
