@@ -1,9 +1,10 @@
 package com.alexa;
 
-import jdk.jshell.spi.ExecutionControl;
+//import jdk.jshell.spi.ExecutionControl;
 
 import java.io.BufferedReader;
 import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
@@ -51,7 +52,45 @@ public class FieldOperations {
      * @param addRow If true, will add row. If false, will add column.
      * @return Returns increased sea battle field.
      * */
-    public int[][] IncreaseField(int[][] sourceField, boolean addRow)
+    public int[][] IncreaseField(int[][] sourceField, int addRow)
+    {
+        int x = sourceField.length;
+        int y = sourceField[0].length;
+        Scanner sss = new Scanner(System.in);
+        int x_new = x;
+        int y_new = y;
+        int [] tempArray;
+
+        if (addRow == 1) {
+            y_new++;
+        }
+        else {
+            x_new++;
+        }
+
+        int[][] increasedField = new int[x_new][y_new];
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                increasedField[i][j] = sourceField[i][j];
+            }
+        }
+
+        if (addRow == 1) {
+            for (int j = 0; j < x; j++) {
+                increasedField[j][y_new-1] = sss.nextInt();//добавляет столбец если вводим 1
+            }
+        }
+        else {
+            for (int j = 0; j < x_new; j++)
+                increasedField[y_new - 1][j] = sss.nextInt();//добавляем строку если вводим 0
+        }
+
+
+        return increasedField;
+    }
+
+    public int[][] IncreaseFieldVer2(int[][] sourceField, boolean addRow)
     {
         int x = sourceField.length;
         int y = sourceField[0].length;
@@ -76,12 +115,14 @@ public class FieldOperations {
             for (int j = 0; j < y; j++)
                 increasedField[x_new-1][j] = 0;
         else
-            for (int j = 0; j < y; j++)
-                increasedField[j][y_new-1] = 0;
+            for (int j = 0; j < y; j++) {
+
+                increasedField[j][y_new-1] =1 ;
+            }
+
 
         return increasedField;
     }
-
     /**
      *
      * @param sourceField Source sea battle field which will be modified.
@@ -93,6 +134,7 @@ public class FieldOperations {
     {
         return null;
     }
+
 
     /**
      * Counts amount of ships on the sea battle field.
