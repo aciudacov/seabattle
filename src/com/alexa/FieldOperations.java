@@ -156,7 +156,11 @@ public class FieldOperations {
      */
     public int GetShipCount(int[][] sourceField)
     {
-        var fieldCopy = sourceField;
+        var fieldCopy = new int[sourceField.length][sourceField[0].length];
+        for(int i=0; i<sourceField.length; i++)
+            for(int j=0; j<sourceField[i].length; j++)
+                fieldCopy[i][j]=sourceField[i][j];
+
         var shipAmount = 0;
         try
         {
@@ -321,7 +325,12 @@ public class FieldOperations {
     {
         try
         {
-            var postAttack = sourceField;
+            var postAttack = new int[sourceField.length][sourceField[0].length];
+
+            for(int i=0; i<sourceField.length; i++)
+                for(int j=0; j<sourceField[i].length; j++)
+                    postAttack[i][j]=sourceField[i][j];
+
             var reader = new BufferedReader(new java.io.FileReader(filePath));
             var line = reader.readLine();
             int attackAmount = parseInt(line);
@@ -334,7 +343,7 @@ public class FieldOperations {
                 String[] nums = line.split(" ");
                 var attackX = parseInt(nums[0]);
                 var attackY = parseInt(nums[1]);
-                postAttack[attackX][attackY] = 0;
+                postAttack[attackX-1][attackY-1] = 0;
             }
             return postAttack;
         }
@@ -345,13 +354,13 @@ public class FieldOperations {
         }
     }
 
-    public void AnalyzeAttack(int[][] beforeAttack, int[][] afterAttack)
+    public boolean AnalyzeAttack(int[][] beforeAttack, int[][] afterAttack, String filename)
     {
         try
         {
-            var file = new File("Corabii.out");
+            var file = new File(filename);
             file.createNewFile();
-            var writer = new BufferedWriter(new FileWriter("Corabii.out"));
+            var writer = new BufferedWriter(new FileWriter(filename));
             var shipList = new ArrayList<ShipTypeCoordPair>();
 
 
@@ -359,7 +368,9 @@ public class FieldOperations {
             {
                 for (int y = 0; y < beforeAttack[0].length; y++)
                 {
-                    if (GetShipType(beforeAttack, x, y) == GetShipType(afterAttack, x, y))
+                    var before = GetShipType(beforeAttack, x, y);
+                    var after = GetShipType(afterAttack, x, y);
+                    if (before == after && before != 0)
                     {
                         shipList.add(new ShipTypeCoordPair(GetShipType(beforeAttack, x, y), x, y));
                     }
@@ -368,13 +379,15 @@ public class FieldOperations {
             writer.write(shipList.size() + "\n");
             for (var sh : shipList)
             {
-                writer.write(sh.x + " " + sh.y + " " + sh.ShipType);
+                writer.write((sh.x+1) + " " + (sh.y+1) + " " + sh.ShipType + "\n");
             }
             writer.close();
+            return true;
         }
         catch (Exception e)
         {
             e.printStackTrace();
+            return false;
         }
     }
 
