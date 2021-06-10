@@ -332,8 +332,7 @@ public class FieldOperations {
                     postAttack[i][j]=sourceField[i][j];
 
             var reader = new BufferedReader(new java.io.FileReader(filePath));
-            var line = reader.readLine();
-            int attackAmount = parseInt(line);
+            var line = reader.readLine(); //skip attack amount num
 
             while (line != null)
             {
