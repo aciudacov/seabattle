@@ -1,9 +1,6 @@
 package com.alexa;
 
-//import jdk.jshell.spi.ExecutionControl;
-
 import java.io.BufferedReader;
-import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
@@ -56,7 +53,6 @@ public class FieldOperations {
     {
         int x = sourceField.length;
         int y = sourceField[0].length;
-        Scanner sss = new Scanner(System.in);
         int x_new = x;
         int y_new = y;
 
