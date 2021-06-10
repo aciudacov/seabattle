@@ -196,7 +196,7 @@ public class FieldOperations {
                 if (sourceField[x][y - 1] == 1)
                     return 0;
             }
-            else if (x + 3 < sourceField.length)
+            if (x + 3 < sourceField.length)
             {
                 if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1 && sourceField[x + 2][y] == 1 && sourceField[x + 3][y] == 1)
                     return 7;
@@ -217,7 +217,7 @@ public class FieldOperations {
                 if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1)
                     return 5;
             }
-            else if (y + 4 < sourceField[0].length)
+            else if (y + 3 < sourceField[0].length)
             {
                 if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1 && sourceField[x][y + 2] == 1 && sourceField[x][y + 3] == 1)
                     return 4;
@@ -226,14 +226,14 @@ public class FieldOperations {
                 else if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1)
                     return 2;
             }
-            else if (y + 3 < sourceField[0].length)
+            else if (y + 2 < sourceField[0].length)
             {
                 if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1 && sourceField[x][y + 2] == 1)
                     return 3;
                 else if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1)
                     return 2;
             }
-            else if (y + 2 < sourceField[0].length)
+            else if (y + 1 < sourceField[0].length)
             {
                 if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1)
                     return 2;
