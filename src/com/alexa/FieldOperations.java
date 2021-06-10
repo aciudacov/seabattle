@@ -263,7 +263,7 @@ public class FieldOperations {
                     shipList.add(new ShipTypeCoordPair(shipType, x, y));
             }
         }
-         shipList.sort(Comparator.comparing(ShipTypeCoordPair::getShipType));
+         shipList.sort(Comparator.comparing(ShipTypeCoordPair::getShipType).reversed());
 
         return shipList;
     }
