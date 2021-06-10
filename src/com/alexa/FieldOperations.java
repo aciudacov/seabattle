@@ -80,14 +80,57 @@ public class FieldOperations {
 
     /**
      *
-     * @param sourceField Source sea battle field which will be modified.
+     * @param sourceField Source sea battle field from where the ship will be removed.
      * @param x Vertical coordinate of the ship (specify lowest point).
      * @param y Horizontal coordinate of the ship (specify rightmost point).
-     * @return Returns modified sea battle field without the ship whose coords were specified.
+     * @return Returns true if ship was removed else returns false.
      */
-    public int[][] RemoveShip(int[][] sourceField, int x, int y)
+    public boolean RemoveShip(int[][] sourceField, int x, int y)
     {
-        return null;
+        try
+        {
+            if (sourceField[x][y] == 0)
+                return false;
+            else
+            {
+                if (sourceField[x-1][y] == 0 && sourceField[x][y-1] == 0)
+                {
+                    sourceField[x][y] = 0;
+                    return true;
+                }
+                else if (sourceField[x-1][y] == 1 && sourceField[x][y-1] == 0) //go up
+                {
+                    sourceField[x][y] = 0;
+                    while (x != 0 && sourceField[x-1][y] != 0)
+                    {
+                        sourceField[x-1][y] = 0;
+                        x--;
+                        if (x-1 == -1)
+                            break;
+                    }
+                    return true;
+                }
+                else if (sourceField[x-1][y] == 0 && sourceField[x][y-1] == 1) //go left
+                {
+                    sourceField[x][y] = 0;
+                    while (y != 0 && sourceField[x][y-1] != 0)
+                    {
+                        sourceField[x][y-1] = 0;
+                        y--;
+                        if (y-1 == -1)
+                            break;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
 
