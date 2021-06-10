@@ -117,7 +117,7 @@ public class FieldOperations {
                 else if (sourceField[x-1][y] == 1 && sourceField[x][y-1] == 0) //go up
                 {
                     sourceField[x][y] = 0;
-                    while (x != 0 && sourceField[x-1][y] != 0)
+                    while (sourceField[x-1][y] != 0)
                     {
                         sourceField[x-1][y] = 0;
                         x--;
@@ -129,7 +129,7 @@ public class FieldOperations {
                 else if (sourceField[x-1][y] == 0 && sourceField[x][y-1] == 1) //go left
                 {
                     sourceField[x][y] = 0;
-                    while (y != 0 && sourceField[x][y-1] != 0)
+                    while (sourceField[x][y-1] != 0)
                     {
                         sourceField[x][y-1] = 0;
                         y--;
@@ -277,14 +277,14 @@ public class FieldOperations {
      * @param sourceField Source sea battle field where to look for horizontal ships.
      * @return Returns true if write to file was successful.
      */
-    public boolean WriteHorizontal(int[][] sourceField)
+    public boolean WriteHorizontal(int[][] sourceField, String filename)
     {
         try
         {
             var reqShips = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
-            var file = new File("Orizont.txt");
+            var file = new File(filename);
             file.createNewFile();
-            var writer = new BufferedWriter(new FileWriter("Orizont.txt"));
+            var writer = new BufferedWriter(new FileWriter(filename));
             var shipList = GetCoordinatesDesc(sourceField);
             for (var sh: shipList)
             {
@@ -317,9 +317,65 @@ public class FieldOperations {
      *
      * @param sourceField Source sea battle field where attacked ships are.
      */
-    public void AttackShips(int[][] sourceField)
+    public int[][] AttackShips(int[][] sourceField, String filePath)
     {
-        //do something
+        try
+        {
+            var postAttack = sourceField;
+            var reader = new BufferedReader(new java.io.FileReader(filePath));
+            var line = reader.readLine();
+            int attackAmount = parseInt(line);
+
+            while (line != null)
+            {
+                line = reader.readLine();
+                if (line == null)
+                    break;
+                String[] nums = line.split(" ");
+                var attackX = parseInt(nums[0]);
+                var attackY = parseInt(nums[1]);
+                postAttack[attackX][attackY] = 0;
+            }
+            return postAttack;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void AnalyzeAttack(int[][] beforeAttack, int[][] afterAttack)
+    {
+        try
+        {
+            var file = new File("Corabii.out");
+            file.createNewFile();
+            var writer = new BufferedWriter(new FileWriter("Corabii.out"));
+            var shipList = new ArrayList<ShipTypeCoordPair>();
+
+
+            for (int x = 0; x < beforeAttack.length; x++)
+            {
+                for (int y = 0; y < beforeAttack[0].length; y++)
+                {
+                    if (GetShipType(beforeAttack, x, y) == GetShipType(afterAttack, x, y))
+                    {
+                        shipList.add(new ShipTypeCoordPair(GetShipType(beforeAttack, x, y), x, y));
+                    }
+                }
+            }
+            writer.write(shipList.size() + "\n");
+            for (var sh : shipList)
+            {
+                writer.write(sh.x + " " + sh.y + " " + sh.ShipType);
+            }
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void OutputField(int[][] sourceField)
