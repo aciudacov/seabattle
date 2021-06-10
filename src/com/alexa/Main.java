@@ -15,7 +15,7 @@ public class Main {
             }
             System.out.println("\n");
         }
-        System.out.println("Enter type of operation, 1 if you want to add a column, 2 if a row");
+        System.out.println("Enter type of operation, 1 if you want to add a column, 0 if a row");
         int type = scanner.nextInt();
         System.out.println("Your choice is read");
         String str = scanner.nextLine();

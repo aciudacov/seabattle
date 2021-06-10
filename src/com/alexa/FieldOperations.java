@@ -90,39 +90,7 @@ public class FieldOperations {
         return increasedField;
     }
 
-    public int[][] IncreaseFieldVer2(int[][] sourceField, boolean addRow)
-    {
-        int x = sourceField.length;
-        int y = sourceField[0].length;
 
-        int x_new = x;
-        int y_new = y;
-
-        if (addRow)
-            y_new++;
-        else
-            x_new++;
-
-        int[][] increasedField = new int[x_new][y_new];
-
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                increasedField[i][j] = sourceField[i][j];
-            }
-        }
-
-        if (addRow)
-            for (int j = 0; j < y; j++)
-                increasedField[x_new-1][j] = 0;
-        else
-            for (int j = 0; j < y; j++) {
-
-                increasedField[j][y_new-1] =1 ;
-            }
-
-
-        return increasedField;
-    }
     /**
      *
      * @param sourceField Source sea battle field which will be modified.
