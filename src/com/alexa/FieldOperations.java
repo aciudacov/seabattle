@@ -185,6 +185,16 @@ public class FieldOperations {
         {
             if (sourceField[x][y] == 0)
                 return 0;
+            else if (x - 1 > -1)
+            {
+                if (sourceField[x - 1][y] == 1)
+                    return 0;
+            }
+            else if (y - 1 > -1)
+            {
+                if (sourceField[x][y - 1] == 1)
+                    return 0;
+            }
             else if (x + 3 < sourceField.length)
             {
                 if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1 && sourceField[x + 2][y] == 1 && sourceField[x + 3][y] == 1)
