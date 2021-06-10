@@ -1,7 +1,8 @@
 package com.alexa;
 
 import java.io.BufferedReader;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 import static java.lang.Integer.parseInt;
 
@@ -250,9 +251,21 @@ public class FieldOperations {
      * Lists coordinates of ships from longest to shortest.
      * @param sourceField Source sea battle field where to calculate ships length.
      */
-    public void ShowCoordinatesDesc(int[][] sourceField)
+    public ArrayList<ShipTypeCoordPair> GetCoordinatesDesc(int[][] sourceField)
     {
-        //do something
+        var shipList = new ArrayList<ShipTypeCoordPair>();
+        for (int x = 0; x < sourceField.length; x++)
+        {
+            for (int y = 0; y < sourceField[0].length; y++)
+            {
+                var shipType = GetShipType(sourceField, x, y);
+                if (shipType != 0)
+                    shipList.add(new ShipTypeCoordPair(shipType, x, y));
+            }
+        }
+         shipList.sort(Comparator.comparing(ShipTypeCoordPair::getShipType));
+
+        return shipList;
     }
 
     /**
