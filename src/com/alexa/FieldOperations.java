@@ -89,6 +89,17 @@ public class FieldOperations {
     {
         try
         {
+            if (x+1 < sourceField.length) //check down
+            {
+                if (sourceField[x+1][y] == 1)
+                    return false;
+            }
+            else if (y+1 < sourceField[0].length) //check right
+            {
+                if (sourceField[x][y+1] == 1)
+                    return false;
+            }
+
             if (sourceField[x][y] == 0)
                 return false;
             else
