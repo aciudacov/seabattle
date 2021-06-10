@@ -177,11 +177,63 @@ public class FieldOperations {
      * @param sourceField Source sea battle field where to identify ship.
      * @param x Vertical coordinate of the ship (specify highest point).
      * @param y Horizontal coordinate of the ship (specify leftmost point).
-     * @return Returns ship type number (from 1 to 7).
+     * @return Returns ship type number (from 1 to 7) or 0 if coordinate does not contain ship.
      */
     public int GetShipType(int[][] sourceField, int x, int y)
     {
-        return 0;
+        try
+        {
+            if (sourceField[x][y] == 0)
+                return 0;
+            else if (x + 3 < sourceField.length)
+            {
+                if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1 && sourceField[x + 2][y] == 1 && sourceField[x + 3][y] == 1)
+                    return 7;
+                else if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1 && sourceField[x + 2][y] == 1)
+                    return 6;
+                else if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1)
+                    return 5;
+            }
+            else if (x + 2 < sourceField.length)
+            {
+                if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1 && sourceField[x + 2][y] == 1)
+                    return 6;
+                else if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1)
+                    return 5;
+            }
+            else if (x + 1 < sourceField.length)
+            {
+                if (sourceField[x][y] == 1 && sourceField[x + 1][y] == 1)
+                    return 5;
+            }
+            else if (y + 4 < sourceField[0].length)
+            {
+                if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1 && sourceField[x][y + 2] == 1 && sourceField[x][y + 3] == 1)
+                    return 4;
+                else if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1 && sourceField[x][y + 2] == 1)
+                    return 3;
+                else if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1)
+                    return 2;
+            }
+            else if (y + 3 < sourceField[0].length)
+            {
+                if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1 && sourceField[x][y + 2] == 1)
+                    return 3;
+                else if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1)
+                    return 2;
+            }
+            else if (y + 2 < sourceField[0].length)
+            {
+                if (sourceField[x][y] == 1 && sourceField[x][y + 1] == 1)
+                    return 2;
+            }
+            return 1;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
