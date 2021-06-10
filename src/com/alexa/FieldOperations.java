@@ -52,19 +52,20 @@ public class FieldOperations {
      * @param addRow If true, will add row. If false, will add column.
      * @return Returns increased sea battle field.
      * */
-    public int[][] IncreaseField(int[][] sourceField, int addRow)
+    public int[][] IncreaseField(int[][] sourceField, boolean addRow)
     {
         int x = sourceField.length;
         int y = sourceField[0].length;
         Scanner sss = new Scanner(System.in);
         int x_new = x;
         int y_new = y;
-        int [] tempArray;
 
-        if (addRow == 1) {
+        if (addRow)
+        {
             y_new++;
         }
-        else {
+        else
+        {
             x_new++;
         }
 
@@ -76,16 +77,18 @@ public class FieldOperations {
             }
         }
 
-        if (addRow == 1) {
-            for (int j = 0; j < x; j++) {
-                increasedField[j][y_new-1] = sss.nextInt();//добавляет столбец если вводим 1
+        if (addRow) //add column else add row
+        {
+            for (int j = 0; j < x; j++)
+            {
+                increasedField[j][y_new-1] = 0;
             }
         }
-        else {
+        else
+        {
             for (int j = 0; j < x_new; j++)
-                increasedField[y_new - 1][j] = sss.nextInt();//добавляем строку если вводим 0
+                increasedField[y_new - 1][j] = 0;
         }
-
 
         return increasedField;
     }
