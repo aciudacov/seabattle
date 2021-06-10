@@ -141,7 +141,6 @@ public class FieldOperations {
             e.printStackTrace();
             return false;
         }
-
     }
 
 
@@ -152,12 +151,25 @@ public class FieldOperations {
      */
     public int GetShipCount(int[][] sourceField)
     {
-        for (int i = 0; i < sourceField.length; i++) {
-            for (int j = 0; j < sourceField[0].length; j++) {
-                //do something
+        var fieldCopy = sourceField;
+        var shipAmount = 0;
+        try
+        {
+            for (int x = 0; x < fieldCopy.length; x++)
+            {
+                for (int y = 0; y < fieldCopy[0].length; y++)
+                {
+                    if (RemoveShip(fieldCopy, x, y))
+                        shipAmount++;
+                }
             }
+            return shipAmount;
         }
-        return 0;
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
