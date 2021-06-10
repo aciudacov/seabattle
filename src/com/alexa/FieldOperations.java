@@ -68,7 +68,7 @@ public class FieldOperations {
 
         int[][] increasedField = new int[x_new][y_new];
 
-        for (int i = 0; i < x; i++) //TODO: replace with System.arraycopy
+        for (int i = 0; i < x; i++)
             for (int j = 0; j < y; j++)
                 increasedField[i][j] = sourceField[i][j];
 
@@ -285,7 +285,7 @@ public class FieldOperations {
     {
         try
         {
-            var reqShips = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+            var reqShips = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
             var file = new File(filename);
             file.createNewFile();
             var writer = new BufferedWriter(new FileWriter(filename));
