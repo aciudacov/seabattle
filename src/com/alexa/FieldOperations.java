@@ -57,34 +57,22 @@ public class FieldOperations {
         int y_new = y;
 
         if (addColumn)
-        {
             y_new++;
-        }
         else
-        {
             x_new++;
-        }
 
         int[][] increasedField = new int[x_new][y_new];
 
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
+        for (int i = 0; i < x; i++) //TODO: replace with System.arraycopy
+            for (int j = 0; j < y; j++)
                 increasedField[i][j] = sourceField[i][j];
-            }
-        }
 
         if (addColumn) //add column else add row
-        {
             for (int j = 0; j < x; j++)
-            {
                 increasedField[j][y_new-1] = 0;
-            }
-        }
         else
-        {
             for (int j = 0; j < x_new; j++)
                 increasedField[y_new - 1][j] = 0;
-        }
 
         return increasedField;
     }
