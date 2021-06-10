@@ -196,4 +196,16 @@ public class FieldOperations {
     {
         //do something
     }
+
+    public void OutputField(int[][] sourceField)
+    {
+        for (int i = 0; i < sourceField.length; i++)
+        {
+            for (int j = 0; j < sourceField[0].length; j++)
+            {
+                System.out.print(sourceField[i][j] + " ");
+            }
+            System.out.println("\n");
+        }
+    }
 }
