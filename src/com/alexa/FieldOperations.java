@@ -49,10 +49,10 @@ public class FieldOperations {
 
     /**
      * @param sourceField Source sea battle field which will be increased.
-     * @param addRow If true, will add row. If false, will add column.
+     * @param addColumn If true, will add column, else add row.
      * @return Returns increased sea battle field.
      * */
-    public int[][] IncreaseField(int[][] sourceField, boolean addRow)
+    public int[][] IncreaseField(int[][] sourceField, boolean addColumn)
     {
         int x = sourceField.length;
         int y = sourceField[0].length;
@@ -60,7 +60,7 @@ public class FieldOperations {
         int x_new = x;
         int y_new = y;
 
-        if (addRow)
+        if (addColumn)
         {
             y_new++;
         }
@@ -77,7 +77,7 @@ public class FieldOperations {
             }
         }
 
-        if (addRow) //add column else add row
+        if (addColumn) //add column else add row
         {
             for (int j = 0; j < x; j++)
             {
