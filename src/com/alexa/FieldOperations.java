@@ -84,7 +84,7 @@ public class FieldOperations {
      * @param sourceField Source sea battle field from where the ship will be removed.
      * @param x Vertical coordinate of the ship (specify lowest point).
      * @param y Horizontal coordinate of the ship (specify rightmost point).
-     * @return Returns true if ship was removed else returns false.
+     * @return Returns true if ship was removed.
      */
     public boolean RemoveShip(int[][] sourceField, int x, int y)
     {
@@ -105,7 +105,7 @@ public class FieldOperations {
                 return false;
             else
             {
-                if (sourceField[x-1][y] == 0 && sourceField[x][y-1] == 0)
+                if (sourceField[x-1][y] == 0 && sourceField[x][y-1] == 0) //one-pos ship
                 {
                     sourceField[x][y] = 0;
                     return true;
